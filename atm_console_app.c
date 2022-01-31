@@ -16,6 +16,7 @@ void stopAtm(void);
 
 // function prototype (User input validation)
 int readInteger(void);
+int readDouble(void);
 void clearBuffer(void);
 
 // main function begins the program execution
@@ -118,7 +119,6 @@ void displayWelcomeMessage(void)
 void getPinNumber(void)
 {
     // get stored password
-    // int pinRecord = 1234;
     int pinRecord = readFile();
     while (pinRecord == -1)
     {
@@ -161,7 +161,9 @@ double getDepositAmount(void)
     {
         // prompt user for deposite input
         printf("%s", "Enter deposite amount\n ");
-        scanf("%lf", &deposite);
+        deposite = readDouble();
+
+        //scanf("%lf", &deposite);
         // check for non-negative values
         if (deposite <= 0)
         {
@@ -378,7 +380,7 @@ int readFile(void)
     return value;
 }
 
-// get integer
+// validate every user integer input
 int readInteger(void)
 {
     int number;
@@ -393,6 +395,23 @@ int readInteger(void)
 
     return number;
 }
+// validate every user double value input
+int readDouble(void)
+{
+    double number;
+    char character;
+    int status;
+
+    while ((status = scanf("%lf%c", &number, &character)) == 0 || (2 == status && character != '\n'))
+    {
+        clearBuffer();
+        printf("You did not enter a real number, Try again > ");
+    }
+
+    return number;
+}
+
+
 
 // clear previous input
 void clearBuffer(void)
