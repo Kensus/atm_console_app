@@ -178,7 +178,7 @@ double getDepositAmount(void)
     return deposite;
 } // end function getDepositeAmount
 
-// check account balance
+// check account balance will return double to printen on a riceipt
 double checkAccountBalance(double currentBalance)
 {
     // on screen or receipt
