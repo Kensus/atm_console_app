@@ -14,6 +14,10 @@ double mobileTopUp();
 void transactions(double, double);
 void stopAtm(void);
 
+// function prototype (User input validation)
+int readInteger(void);
+void clearBuffer(void);
+
 // main function begins the program execution
 int main()
 {
@@ -104,7 +108,9 @@ void displayWelcomeMessage(void)
     while (cardStatus != 1)
     {
         printf("%s", "\tWelcome inserts card, thank you \n\t(Enter 1 to insert card)\n");
-        scanf("%d", &cardStatus);
+        cardStatus = readInteger();
+
+        // scanf("%d", &cardStatus);
     }
 }
 
@@ -117,7 +123,7 @@ void getPinNumber(void)
     while (pinRecord == -1)
     {
         // read the file the continue
-        ; // do notnig        
+        ; // do notnig
     }
 
     int pinNumber = 0;
@@ -364,10 +370,33 @@ int readFile(void)
 
     if (fgets(data, 5, fp) != NULL)
     {
-        //puts(data);
+        // puts(data);
         value = atoi(data); // convert string to integer
     }
     fclose(fp);
 
     return value;
+}
+
+// get integer
+int readInteger(void)
+{
+    int number;
+    char character;
+    int status;
+
+    while ((status = scanf("%d%c", &number, &character)) == 0 || (2 == status && character != '\n'))
+    {
+        clearBuffer();
+        printf("You did not enter an integer value, Try again > ");
+    }
+
+    return number;
+}
+
+// clear previous input
+void clearBuffer(void)
+{
+    while (fgetc(stdin) != '\n')
+        ; // do nothing
 }
