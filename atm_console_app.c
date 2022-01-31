@@ -163,8 +163,8 @@ double getDepositAmount(void)
         printf("%s", "Enter deposite amount\n ");
         deposite = readDouble();
 
-        //scanf("%lf", &deposite);
-        // check for non-negative values
+        // scanf("%lf", &deposite);
+        //  check for non-negative values
         if (deposite <= 0)
         {
             printf("Invalid deposite \n"); // print error
@@ -410,8 +410,6 @@ int readDouble(void)
 
     return number;
 }
-
-
 
 // clear previous input
 void clearBuffer(void)
