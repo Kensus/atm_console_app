@@ -122,7 +122,7 @@ void getPinNumber(void)
     int pinRecord = readFile();
     while (pinRecord == -1)
     {
-        // read the file the continue
+        // read the file then continue
         ; // do notnig
     }
 
@@ -130,8 +130,11 @@ void getPinNumber(void)
     // prompt user for pin input and check for invalid pin
     while (pinNumber != pinRecord)
     {
+
         printf("%s", "\nEnter pin number and press enter\n");
-        scanf("%d", &pinNumber);
+        // using readInteger function
+        pinNumber = readInteger();
+        // scanf("%d", &pinNumber);
 
         if (pinNumber != pinRecord) // check if pin is correct
         {
@@ -358,10 +361,9 @@ void stopAtm(void)
 // open and read file content for password
 int readFile(void)
 {
-    FILE *fp;
-    char data[5]; // store number of char
-    // char str[5];  // copy chars
-    int value; // integer veision of str
+    FILE *fp;     // fp poinst to the stream from which to read the characters
+    char data[5]; // store number of characters read
+    int value;    // integer version of a string
 
     fp = fopen("password_file.txt", "r");
     if (fp == NULL)
